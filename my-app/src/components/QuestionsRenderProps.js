@@ -7,11 +7,10 @@ import { QuestionsContainer } from '../containers/QuestionsContainer';
 // (also known as Children as Function).
 // There is another widely used pattern that separates the logic from the view,
 
-const Questions = (props) => (<div>
-    {props.clues.map(clue => <div key={clue.id}>
-        <label>{clue.question}</label>
-    </div>)}
-</div>);
+const Questions = (props) => (<ul className="list-group">
+    {props.clues.map(clue =>
+        <li className="list-group-item" key={clue.id}>{clue.question}</li>)}
+</ul>);
 
 
 // notice that a function is passed to the render prop:

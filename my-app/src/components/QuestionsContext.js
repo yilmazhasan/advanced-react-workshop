@@ -20,13 +20,12 @@ const QuestionsContext = createContext({ loading: true });
 
 // A React component that subscribes to context changes. This lets you subscribe to a context within a function component.
 const Questions = () => {
-    return <QuestionsContext.Consumer>{(category) => <div>
+    return <QuestionsContext.Consumer>{(category) => <ul className="list-group">
         {
-            category.clues.map(clue => <div key={clue.id}>
-                <label>{clue.question}</label>
-            </div>)
+            category.clues.map(clue =>
+                <li className="list-group-item" key={clue.id}>{clue.question}</li>)
         }
-    </div>}
+    </ul>}
     </QuestionsContext.Consumer >
 };
 

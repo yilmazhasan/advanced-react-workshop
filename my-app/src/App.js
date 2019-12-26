@@ -30,10 +30,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={"container", "text-center"}>
         <Header text="Welcome to Trivia Game!" />
         <PageContent>
           <Button onClick={this.onGameStart} text="Start Game!" />
+          <hr/>
           {/* {this.state.gameStarted ? <Categories onCategorySelected={this.onCategorySelected} /> : null} */}
           {/* {this.state.gameStarted ? <CategoriesContainer onCategorySelected={this.onCategorySelected} /> : null} */}
           {this.state.gameStarted ? <CategoriesHOC onCategorySelected={this.onCategorySelected} /> : null}

@@ -28,11 +28,10 @@ export class Questions extends React.Component {
     }
 
     renderQuestions() {
-        return (<div>
-            {this.state.category.clues.map(clue => <div key={clue.id}>
-                <label>{clue.question}</label>
-            </div>)}
-        </div>);
+        return (<ul className="list-group">
+            {this.state.category.clues.map(clue =>
+                <li className="list-group-item" key={clue.id}>{clue.question}</li>)}
+        </ul>);
     }
 
     render() {

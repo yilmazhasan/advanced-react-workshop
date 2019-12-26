@@ -10,7 +10,7 @@ export class Categories extends React.Component {
     // Everything that needs to stay interactive goes into the state. Everything else is just passed down as props.
     // This method is invoked only once, after rendering occurs for the first time. 
     componentDidMount() {
-        fetch("http://jservice.io/api/categories?count=20")
+        fetch("http://jservice.io/api/categories?count=5")
             .then(res => res.json())
             .then(categories => this.setState({ loading: false, categories }),
                 error => this.setState({ loading: false, error }));
@@ -40,8 +40,8 @@ export class Categories extends React.Component {
         return (<div>
             {/* Keys help React identify which items have changed, are added, or are removed. */}
             {this.state.categories.map(category => <div key = {category.id}>
-                <label>{category.title}</label>
                 <input type="radio" value={category.id} onClick={this.onCategorySelected} />
+                <label>{category.title}</label>
             </div>)}
         </div>);
     }

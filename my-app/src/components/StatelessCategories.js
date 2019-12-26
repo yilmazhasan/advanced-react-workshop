@@ -1,28 +1,25 @@
 import React from 'react';
-
-// The Container / View Pattern
-const LoadingView = () => <div>Loading...</div>;
-
-const ErrorView = () => <div>I'm sorry! Please try again.</div>;
+import { Loading } from './Loading';
+import { Error } from "./Error";
 
 // However, the child components are not aware of the origin nor the functionality of the functions received in the props. 
 // These functions can update the state in a parent component yet could do something else. 
 // The child components only execute them. 
-const Categories = ({ categories }) => (
+const Categories = (props) => (
     <div>
-        {categories.map(category => <div>
+        {props.categories.map(category => <div>
             <label>{category.title}</label>
-            <input type="radio" value={category.id} onClick={this.onCategorySelected} />
+            <input type="radio" value={category.id} onClick={(e) => props.onCategorySelected(e.target.value)} />
         </div>)}
     </div>);
 
-export const Categories3 = ({ loading, categories }) => {
-    if (loading) {
-        return <LoadingView />;
-    } else if (categories) {
-        return <Categories {...categories} />;
+export const StatelessCategories = (props) => {
+    if (props.loading) {
+        return <Loading />;
+    } else if (props.categories) {
+        return <Categories {...props} />;
     } else {
-        return <ErrorView />;
+        return <Error />;
     }
 };
 

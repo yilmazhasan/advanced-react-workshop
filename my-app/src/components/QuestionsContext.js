@@ -1,4 +1,7 @@
 import React from 'react';
+import { createContext } from 'react';
+import { Loading } from './Loading';
+import { Error } from './Error';
 
 // Many of the modules/components that we write have dependencies. 
 // A proper management of these dependencies is critical for the success of the project. 
@@ -10,16 +13,25 @@ import React from 'react';
 // They mentioned in the official docs that the API is not stable and may change. And that is exactly what happened.
 //  In the version 16.3 we got a new one which I think is more natural and easy to work with.
 
-import { createContext } from 'react';
 
-const Context = createContext({});
-
-export const Provider = Context.Provider;
-export const Consumer = Context.Consumer;
+const QuestionsContext = createContext({ loading: true });
 
 // The Provider accepts our context in the form of a value prop. The consumer is used to access the context and basically read data from it. And because they usually live in different files it is a good idea to create a single place for their initialization.
 
-export class QuestionProvider extends React.Component {
+// A React component that subscribes to context changes. This lets you subscribe to a context within a function component.
+const Questions = () => {
+    return <QuestionsContext.Consumer>{(category) => <div>
+        {
+            category.clues.map(clue => <div>
+                <label>{clue.question}</label>
+                <input type="text" />
+            </div>)
+        }
+    </div>}
+    </QuestionsContext.Consumer >
+};
+
+class QuestionsProvider extends React.Component {
     state = { loading: true };
 
     componentDidMount() {
@@ -29,37 +41,25 @@ export class QuestionProvider extends React.Component {
                 error => this.setState({ loading: false, error }));
     }
 
-
-    getChildContext() {
-        return { category: this.state };
-    }
-
-
     render() {
-        return (
-            <Provider value={this.state}>
-                <Questions onCategorySelected={this.props.onCategorySelected} />
-            </Provider>
-        );
+        if (this.state.loading) {
+            return <Loading />
+        } else if (this.state.category) {
+            return <QuestionsContext.Provider value={this.state.category}>
+                {this.props.children}
+            </QuestionsContext.Provider>
+        } else {
+            return <Error />;
+        }
     }
 };
 
-const LoadingView = () => <div>Loading...</div>;
+export const QuestionsWithContextApi = (props) => (
+    <QuestionsProvider {...props}>
+        <Questions />
+    </QuestionsProvider>);
 
-const ErrorView = () => <div>I'm sorry! Please try again.</div>;
-
-const Questions = ({ onCategorySelected }) => {
-    return <Consumer>{({ category }) =>
-        <div>
-            {category.clues.map(clue => <div>
-                <label>{clue.question}</label>
-                <input type="radio" value={category.id} onClick={onCategorySelected} />
-            </div>)}
-        </div>}
-    </Consumer>
-};
-
-// "props drilling" in React, because you don't need to reach your props through all components which are not interested in them. 
+// "props drilling" in React, because you don't need to reach your props through all components which are not interested in them.
 
 // Layered react app - > surekli state pass etmek zorunda kaliyoruz.  
 // The string "React in patterns" should somehow reach the Title component. 

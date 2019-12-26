@@ -1,5 +1,6 @@
 import React from 'react';
-import { Header, PageContent, Button, Categories, Questions } from "./components";
+import { Header, PageContent, Button, Categories, Questions, Score, QuestionsRenderProps, QuestionsWithContextApi } from "./components";
+import CategoriesHOC from './containers/CategoriesHOC';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class App extends React.Component {
   }
 
   onAnswersSubmitted = (answers) => {
-    
+
   }
 
   render() {
@@ -33,8 +34,12 @@ class App extends React.Component {
         <Header text="Welcome to Trivia Game!" />
         <PageContent>
           <Button onClick={this.onGameStart} text="Start Game!" />
-          {this.state.gameStarted ? <Categories onCategorySelected={this.onCategorySelected} /> : null}
-          {this.state.categoryId ? <Questions categoryId={this.state.categoryId} /> : null}
+          {/* {this.state.gameStarted ? <Categories onCategorySelected={this.onCategorySelected} /> : null} */}
+          {/* {this.state.gameStarted ? <CategoriesContainer onCategorySelected={this.onCategorySelected} /> : null} */}
+          {this.state.gameStarted ? <CategoriesHOC onCategorySelected={this.onCategorySelected} /> : null}
+          {/* {this.state.categoryId ? <Questions categoryId={this.state.categoryId} /> : null} */}
+          {/* {this.state.categoryId ? <QuestionsRenderProps categoryId={this.state.categoryId} /> : null} */}
+          {this.state.categoryId ? <QuestionsWithContextApi categoryId={this.state.categoryId} /> : null}
           {this.state.score ? <Score value={this.state.score} /> : null}
         </PageContent>
       </div >

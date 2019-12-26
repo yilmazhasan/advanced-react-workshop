@@ -1,7 +1,7 @@
 import React from 'react';
 
 // The Container / View Pattern
-export class Categories2 extends React.Component {
+export class CategoriesView extends React.Component {
     constructor(props) {
         super(props)
     }

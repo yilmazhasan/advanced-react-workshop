@@ -27,11 +27,15 @@ export class Questions extends React.Component {
         return <div>I'm sorry! Please try again.</div>;
     }
 
+    onQuestionSelected = (e) => {
+        console.log(e.target.value);
+    }
+
     renderQuestions() {
         return (<div>
             {this.state.category.clues.map(clue => <div>
                 <label>{clue.question}</label>
-                <input type="radio" value={category.id} onClick={this.onCategorySelected} />
+                <input type="text" onClick={this.onQuestionSelected} />
             </div>)}
         </div>);
     }

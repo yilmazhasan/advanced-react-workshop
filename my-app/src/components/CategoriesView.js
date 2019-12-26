@@ -20,7 +20,8 @@ export class CategoriesView extends React.Component {
 
     renderCategories() {
         return (<div>
-            {this.props.categories.map(category => <div>
+            {/* Keys help React identify which items have changed, are added, or are removed. */}
+            {this.props.categories.map(category => <div key={this.category.id}>
                 <label>{category.title}</label>
                 <input type="radio" value={category.id} onClick={this.onCategorySelected} />
             </div>)}

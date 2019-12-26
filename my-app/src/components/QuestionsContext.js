@@ -22,9 +22,8 @@ const QuestionsContext = createContext({ loading: true });
 const Questions = () => {
     return <QuestionsContext.Consumer>{(category) => <div>
         {
-            category.clues.map(clue => <div>
+            category.clues.map(clue => <div key={clue.id}>
                 <label>{clue.question}</label>
-                <input type="text" />
             </div>)
         }
     </div>}

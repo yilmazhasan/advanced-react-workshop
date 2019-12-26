@@ -40,7 +40,6 @@ class App extends React.Component {
           {/* {this.state.categoryId ? <Questions categoryId={this.state.categoryId} /> : null} */}
           {/* {this.state.categoryId ? <QuestionsRenderProps categoryId={this.state.categoryId} /> : null} */}
           {this.state.categoryId ? <QuestionsWithContextApi categoryId={this.state.categoryId} /> : null}
-          {this.state.score ? <Score value={this.state.score} /> : null}
         </PageContent>
       </div >
     );

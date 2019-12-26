@@ -7,7 +7,8 @@ import { Error } from "./Error";
 // The child components only execute them. 
 const Categories = (props) => (
     <div>
-        {props.categories.map(category => <div>
+        {/* Keys help React identify which items have changed, are added, or are removed. */}
+        {props.categories.map(category => <div key={category.id}>
             <label>{category.title}</label>
             <input type="radio" value={category.id} onClick={(e) => props.onCategorySelected(e.target.value)} />
         </div>)}

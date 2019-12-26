@@ -8,9 +8,8 @@ import { QuestionsContainer } from '../containers/QuestionsContainer';
 // There is another widely used pattern that separates the logic from the view,
 
 const Questions = (props) => (<div>
-    {props.clues.map(clue => <div>
+    {props.clues.map(clue => <div key={clue.id}>
         <label>{clue.question}</label>
-        <input type="text" />
     </div>)}
 </div>);
 

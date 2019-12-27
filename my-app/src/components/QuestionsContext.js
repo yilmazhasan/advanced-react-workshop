@@ -57,16 +57,31 @@ export const QuestionsWithContextApi = (props) => (
         <Questions />
     </QuestionsProvider>);
 
-// "props drilling" in React, because you don't need to reach your props through all components which are not interested in them.
+// "props drilling" in React, because you don't need to reach your props through all components 
+// which are not interested in them.
+
+//  The context in React is used to pass down properties implicitly the component tree. 
+// You can declare properties as context somewhere up in a parent component and 
+// pick it up again in a child component somewhere down the component tree. 
+// Yet everything without the need to pass the props explicitly down each component 
+// that sits between the context producing parent component and the context consuming child component.
+//  It is an invisible container that you can reach down your component tree.
+//  It avoids the so called "props drilling" in React, because you don't need to reach your props 
+// through all components which are not interested in them. 
+
+// The glueing should allow you to access the state and to modify the state.
+//  The state itself is often managed in some kind of state container.
+
+// But how would you make this state container accessible to all the React components that need to be glued to the state? 
+// It would be done by using React's context. 
+// In your top level component, basically your React root component, you would declare the state container
+//  in the React context so that it is implicitly accessible for each component down the component tree. 
 
 // Layered react app - > surekli state pass etmek zorunda kaliyoruz.  
-// The string "React in patterns" should somehow reach the Title component. 
-// The direct way of doing this is to pass it from App to Header and then Header pass it down to Title.
-//  However, this may work for these three components but what happens if there are multiple properties and deeper nesting.
-//   Lots of components will act as proxy passing properties to their children.
 
 // Context is designed to share data that can be considered “global” for a tree of React components,
 //  such as the current authenticated user, theme, or preferred language.
 
 // Before relying on a sophisticated state management library, you should have passed your props a couple of components down the component tree. 
-// You should know the feeling of "there needs to be a better way to do this" when you only pass props down a handful of components without using these props in the components between but only in the very last child component.
+// You should know the feeling of "there needs to be a better way to do this" when you only pass props down a handful of components without 
+// using these props in the components between but only in the very last child component.

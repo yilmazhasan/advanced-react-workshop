@@ -40,7 +40,7 @@ export class Categories extends React.Component {
         return (<div>
             {/* Keys help React identify which items have changed, are added, or are removed. */}
             {this.state.categories.map(category => <div key = {category.id}>
-                <input type="radio" value={category.id} onClick={this.onCategorySelected} />
+                <input type="radio" value={category.id} onClick={this.onCategorySelected}/>
                 <label>{category.title}</label>
             </div>)}
         </div>);

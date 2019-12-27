@@ -11,7 +11,7 @@ class App extends React.Component {
 
   onGameStart = () => {
     console.log("Game started!")
-    this.setState({ gameStarted: true })
+    this.setState({ gameStarted: true, categoryId: undefined })
   }
 
   // State is managed in a component. It can be passed down as props to other components. 
@@ -24,17 +24,13 @@ class App extends React.Component {
     this.setState({ categoryId: categoryId })
   }
 
-  onAnswersSubmitted = (answers) => {
-
-  }
-
   render() {
     return (
       <div className={"container", "text-center"}>
         <Header text="Welcome to Trivia Game!" />
         <PageContent>
           <Button onClick={this.onGameStart} text="Start Game!" />
-          <hr/>
+          <hr />
           {/* {this.state.gameStarted ? <Categories onCategorySelected={this.onCategorySelected} /> : null} */}
           {/* {this.state.gameStarted ? <CategoriesContainer onCategorySelected={this.onCategorySelected} /> : null} */}
           {this.state.gameStarted ? <CategoriesHOC onCategorySelected={this.onCategorySelected} /> : null}

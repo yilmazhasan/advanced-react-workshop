@@ -1,3 +1,7 @@
+// The typical action in Redux (same as Flux) is just an object with a type property. 
+// State'deki her degisim icin bir action dispatch edicez. 
+// Action dispatch ederken, action in type i ve datasi olur 
+
 export const SELECT_CATEGORY = 'SELECT_CATEGORY'
 export const REQUEST_CATEGORIES = 'REQUEST_CATEGORIES'
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES'

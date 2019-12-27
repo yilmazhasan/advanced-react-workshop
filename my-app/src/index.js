@@ -14,8 +14,9 @@ const store = createStore(reducers, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={store}> <AppReduxContainer /></ Provider >
-    , document.getElementById('root'));
+{/* <Provider> component - it's a component that accepts our store and makes it available for the children down 
+the React tree via the React's context API. For example: */}
+ReactDOM.render(<Provider store={store}> <AppReduxContainer /></ Provider >, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

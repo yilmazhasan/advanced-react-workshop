@@ -14,11 +14,6 @@ class App extends React.Component {
     this.setState({ gameStarted: true, categoryId: undefined })
   }
 
-  // State is managed in a component. It can be passed down as props to other components. 
-  // These components can consume the props or pass it even further down to their child components. 
-  // A component can manage a whole lot of state, 
-  // pass it down as props to its child components and 
-  // pass a couple of functions along the way to enable child components to alter the state in the parent component again.
   onCategorySelected = (categoryId) => {
     console.log(categoryId)
     this.setState({ categoryId: categoryId })

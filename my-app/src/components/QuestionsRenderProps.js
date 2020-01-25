@@ -1,45 +1,31 @@
 import React from 'react';
+import { Loading } from './Loading';
+import { Error } from './Error';
+import { QuestionsContainer } from '../containers/QuestionsContainer';
 
 // There is another widely used pattern that separates the logic from the view, the Render Props 
 // (also known as Children as Function).
 // There is another widely used pattern that separates the logic from the view,
-class QuestionsRenderProps extends React.Component {
-    state = { loading: true };
 
-    componentDidMount() {
-        fetch(`http://jservice.io/api/category?id=${this.props.categoryId}`)
-            .then(res => res.json())
-            .then(category => this.setState({ loading: false, category }),
-                error => this.setState({ loading: false, error }));
-    }
-
-    render() {
-        return this.props.render(this.state);
-    }
-}
-
-const LoadingView = () => <div>Loading...</div>;
-
-const ErrorView = () => <div>I'm sorry! Please try again.</div>;
-
-const Questions = ({ category, onCategorySelected }) => (<div>
-    {category.clues.map(clue => <div>
+const Questions = (props) => (<div>
+    {props.clues.map(clue => <div>
         <label>{clue.question}</label>
-        <input type="radio" value={category.id} onClick={onCategorySelected} />
+        <input type="text" />
     </div>)}
 </div>);
 
 
 // notice that a function is passed to the render prop:
-export default (onCategorySelected) => (
-    <QuestionsRenderProps
-        render={({ loading, category }) => {
-            if (loading) {
-                return <LoadingView />;
-            } else if (category) {
-                return <Questions {...category, onCategorySelected} />;
+export const QuestionsRenderProps = (props) => (
+    <QuestionsContainer
+        categoryId={props.categoryId}
+        render={(props) => {
+            if (props.loading) {
+                return <Loading />;
+            } else if (props.category) {
+                return <Questions {...props.category} />;
             } else {
-                return <ErrorView />;
+                return <Error />;
             }
         }}
     />

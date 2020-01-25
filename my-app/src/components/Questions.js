@@ -45,6 +45,10 @@ export class Questions extends React.Component {
         }
     }
 
+    onQuestionSelected = (e) => {
+        console.log(e.target.value);
+    }
+
     renderQuestions() {
         return (<div>
             {this.state.category.clues.map(clue => <div>

@@ -1,4 +1,5 @@
-import { Categories2 } from "../components/Categories2";
+import React from 'react';
+import { CategoriesView } from "../components";
 
 // separate the logic and the view.
 // Let's say we want to use a style guide tool like Storybook to render the component in all three states
@@ -22,7 +23,7 @@ export class CategoriesContainer extends React.Component {
     }
 
     render() {
-        return <Categories2 {...this.state} />;
+        return <CategoriesView {...this.state} onCategorySelected={this.props.onCategorySelected} />;
     }
 }
 

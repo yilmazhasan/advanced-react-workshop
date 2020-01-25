@@ -1,4 +1,5 @@
-import { Categories2 } from "../components/Categories2";
+import React from 'react';
+import { StatelessCategories, Categories } from '../components';
 
 // Higher-Order Components (HOCs) are simply functions that take at least one component as a parameter 
 // and return another component. Usually it adds props to the passed component after doing some work. 
@@ -19,7 +20,7 @@ const categories = CategoriesViewComponent =>
         }
 
         render() {
-            return <CategoriesViewComponent {...this.state} />;
+            return <CategoriesViewComponent {...this.state} onCategorySelected={this.props.onCategorySelected} />;
         }
     };
 
@@ -30,7 +31,7 @@ const categories = CategoriesViewComponent =>
 // The knowledge for the appTitle is hidden into the component. 
 // OriginalTitle knows only that it receives a prop called title. It has no idea that this is coming from a configuration file.
 // That's a huge advantage because it allows us to isolate blocks. 
-export default categories(Categories2);
-export default categories(Categories3);
+// export default categories(CategoriesView);
+export default categories(StatelessCategories);
 
 // The only situation that these initial patterns are not useful for is when we need to reuse the logic with different views. 

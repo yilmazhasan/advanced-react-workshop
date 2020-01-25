@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, PageContent, Button, Categories, Questions } from "./components";
+import { Header, PageContent, Button, Categories, Questions, Score } from "./components";
 
 class App extends React.Component {
   constructor(props) {

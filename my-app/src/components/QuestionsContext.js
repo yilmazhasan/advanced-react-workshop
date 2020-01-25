@@ -22,13 +22,24 @@ export const Consumer = Context.Consumer;
 export class QuestionProvider extends React.Component {
     state = { loading: true };
 
+
     componentDidMount() {
-        fetch(`http://jservice.io/api/category?id=${this.props.categoryId}`)
-            .then(res => res.json())
-            .then(category => this.setState({ loading: false, category }),
-                error => this.setState({ loading: false, error }));
+        this.fetchQuestions();
     }
 
+    fetchQuestions() {
+        fetch(`http://jservice.io/api/category?id=${this.props.categoryId}`)
+        .then(res => res.json())
+        .then(category => this.setState({ loading: false, category }),
+            error => this.setState({ loading: false, error }));
+    }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.categoryId != prevProps.categoryId) // Check if there is a change in selection of categories
+        {
+          this.fetchQuestions();
+        }
+    }
 
     getChildContext() {
         return { category: this.state };

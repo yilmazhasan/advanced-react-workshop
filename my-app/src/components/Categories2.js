@@ -22,7 +22,7 @@ export class Categories2 extends React.Component {
         return (<div>
             {this.props.categories.map(category => <div>
                 <label>{category.title}</label>
-                <input type="radio" value={category.id} onClick={this.onCategorySelected} />
+                <input type="radio" name="categories" value={category.id} onClick={this.onCategorySelected} />
             </div>)}
         </div>);
     }
